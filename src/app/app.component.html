@@ -1,0 +1,74 @@
+<main>
+    <section class="section section-shaped section-lg">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title">Employees</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Get a list of employees</h6>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Employee ID</label>
+                                        <input [(ngModel)]="idEmployee" type="text" class="form-control" placeholder="Employee ID">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button (click)="getEmployees()" class="btn btn-primary button-search">GET EMPLOYEES</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <br>
+                            <div class="table-responsive" *ngIf="!loading">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col" [style.Width.%]="5">#</th>
+                                            <th scope="col" [style.Width.%]="20">Name</th>
+                                            <th scope="col" [style.Width.%]="10">Contract</th>
+                                            <th scope="col" [style.Width.%]="5">Role Id</th>
+                                            <th scope="col">Role Name</th>
+                                            <th scope="col">Role Description</th>
+                                            <th scope="col">Hourly Salary</th>
+                                            <th scope="col">Monthly Salary</th>
+                                            <th scope="col">Annual Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-row" *ngFor="let employee of employees; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{employee.Name | uppercase}}</td>
+                                            <td>{{employee.ContractTypeName | uppercase}}</td>
+                                            <td>{{employee.RoleId}}</td>
+                                            <td>{{employee.RoleName | uppercase}}</td>
+                                            <td>{{employee.RoleDescription | uppercase}}</td>
+                                            <td>{{employee.HourlySalary | currency}}</td>
+                                            <td>{{employee.MonthlySalary | currency}}</td>
+                                            <td>{{employee.AnnualSalary | currency}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p *ngIf="loading" class="center-content">
+                                <span class="loading-text">
+                                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> Cargando...
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
